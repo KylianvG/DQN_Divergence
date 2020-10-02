@@ -45,6 +45,8 @@ def train(Q, memory, optimizer, batch_size, discount_factor):
     if len(memory) < batch_size:
         return None
 
+    Q.train()
+
     # random transition batch is taken from experience replay memory
     transitions = memory.sample(batch_size)
 

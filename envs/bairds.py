@@ -13,7 +13,10 @@ class BairdsCounterExample:
 
     def reset(self):
         self.current = np.random.choice(np.arange(0, 6))
-        return self.current
+        # Return state as one-hot encoding
+        state = np.zeros(7)
+        state[self.current-1] = 1.0
+        return state
 
     def step(self, action):
         if action == 1:
@@ -21,7 +24,10 @@ class BairdsCounterExample:
         elif action == 0:
             self.current = np.random.choice(np.arange(0, 6))
         done = False
-        return self.current, 0, done, ""
+        # Create one-hot encoding of the state
+        state = np.zeros(7)
+        state[self.current-1] = 1.0
+        return state, 0, done, ""
 
     def seed(self, seed):
         random.seed(seed)

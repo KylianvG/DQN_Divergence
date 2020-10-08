@@ -17,6 +17,14 @@ class QNetwork(nn.Module):
     def forward(self, x):
         return self.l2(F.relu(self.l1(x)))
 
+class QLinear(nn.Module):
+    def __init__(self, num_in=4, num_out=2):
+        nn.Module.__init__(self)
+        self.l1 = nn.Linear(num_in, num_out)
+
+    def forward(self, x):
+        return self.l1(x)
+
 class ReplayMemory:
     def __init__(self, capacity):
         self.capacity = capacity

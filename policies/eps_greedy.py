@@ -35,7 +35,10 @@ class EpsilonGreedyPolicy(object):
         # Exploit
         else:
             with torch.no_grad():
+                # Added .eval() and .train() because nn.BatchNorm1d requires it.
+                self.Q.eval()
                 out = self.Q(torch.from_numpy(obs).unsqueeze(0).float())
+                self.Q.train()
                 a = torch.argmax(out).item()
         return a
 

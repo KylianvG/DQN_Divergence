@@ -24,6 +24,16 @@ class QLinear(nn.Module):
 
     def forward(self, x):
         return self.l1(x)
+    
+class QBatchNorm(nn.Module):
+    def __init__(self, num_hidden=128, num_in=4, num_out=2):
+        nn.Module.__init__(self)
+        self.l1 = nn.Linear(num_in, num_hidden)
+        self.bn = nn.BatchNorm1d(num_hidden)
+        self.l2 = nn.Linear(num_hidden, num_out)
+        
+    def forward(self, x):
+        return self.l2(F.relu(self.bn(self.l1(x))))
 
 class ReplayMemory:
     def __init__(self, capacity):

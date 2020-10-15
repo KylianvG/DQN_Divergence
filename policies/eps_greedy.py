@@ -11,11 +11,12 @@ class EpsilonGreedyPolicy(object):
     """
     A simple epsilon greedy policy.
     """
-    def __init__(self, Q, epsilon, its=1000):
+    def __init__(self, Q, epsilon, its=1000, choices=[0,1]):
         self.Q = Q
         self.epsilon = epsilon
         self.min_eps = epsilon
         self.decrease_its = 1000
+        self.choices = choices
 
     def sample_action(self, obs):
         """
@@ -30,7 +31,7 @@ class EpsilonGreedyPolicy(object):
         r = random.random()
         # Explore
         if r < self.epsilon:
-            a = random.choice([0, 1])
+            a = random.choice(self.choices)
         # Exploit
         else:
             with torch.no_grad():

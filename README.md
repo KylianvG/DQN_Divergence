@@ -1,5 +1,5 @@
 # DQN_Divergence
-Project studying the divergence of Deep Q-Learning Networks. This small study was conducted as part of the Reinforcement Learning (2020/2021) course at the University of Amsterdam.
+Project studying the divergence of Deep Q-Learning Networks. This small study was conducted as part of the Reinforcement Learning (2020/2021) course at the University of Amsterdam. The code was partially copied from code supplied by the course and modified where necessary.
 
 We study the following potential measures to combat divergence in the CartPole-v1 environment:
 * Experience replay
